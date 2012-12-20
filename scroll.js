@@ -1,4 +1,4 @@
-;(function(){
+;(function(window, document){
   
   var requestAnimationFrame = (function(){
     return window.requestAnimationFrame
@@ -43,5 +43,4 @@
   
   document.scrollTo = scroll
 
-})()
-
+})(this, this.document)
