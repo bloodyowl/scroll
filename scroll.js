@@ -6,7 +6,11 @@
         || window.mozRequestAnimationFrame 
         || window.oRequestAnimationFrame
         || window.msRequestAnimationFrame
-        || function(callback){ window.setTimeout(callback, 1000/60)}
+        || function(callback){ 
+            window.setTimeout(function(){
+              callback(+new Date())
+            }, 1000/60)
+          }
   })()
   , yOffset = "pageYOffset" in window
   
@@ -27,8 +31,7 @@
       
     direction = to - origin < 0 ? true : false
      
-    function handler(){
-      var now = +new Date()
+    function handler(now){
       if (now <= end) {
         if(direction) scrollTo(0, origin - (now - start) / (end - start) * origin + to)
         else scrollTo(0, origin + (now - start) / (end - start) * (to - origin))
