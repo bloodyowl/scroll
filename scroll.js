@@ -8,8 +8,8 @@
         || window.msRequestAnimationFrame
         || function(callback){ 
             window.setTimeout(function(){
-              callback(+new Date())
-            }, 1000/60)
+              callback()
+            }, 1000 / 60)
           }
   })()
   , yOffset = "pageYOffset" in window
@@ -31,7 +31,8 @@
       
     direction = to - origin < 0 ? true : false
      
-    function handler(now){
+    function handler(){
+      var now = +new Date()
       if (now <= end) {
         if(direction) scrollTo(0, origin - (now - start) / (end - start) * origin + to)
         else scrollTo(0, origin + (now - start) / (end - start) * (to - origin))
