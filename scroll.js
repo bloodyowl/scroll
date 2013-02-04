@@ -29,7 +29,7 @@
     if(typeof to == "object" && "nodeName" in to) to = absoluteOffset(to)
     to = document.height < (to + window.innerHeight) ? document.height - window.innerHeight : to
       
-    direction = to - origin < 0 ? true : false
+    direction = to - origin < 0
      
     function handler(){
       var now = +new Date()
