@@ -1,21 +1,26 @@
-# Scroll
+# Scroll.js
 
-Scroll is a tiny JavaScript utility that enables smooth scrolling. 
+Scroll is a tiny (**385 bytes** minified with gzip compression enabled) JavaScript utility that enables smooth scrolling. 
 
-**NOTE** : It uses `requestAnimationFrame` when available.  
-
-## Usage 
-
-### Method
+### usage
 
 ```javascript
-document.scrollTo(destination[, duration])
+document.scrollTo(400, 1000)
+document.scrollTo({top:0, left:1000}, 1000)
+document.scrollTo({left:1000}, 1000)
+document.scrollTo({top:400}, 1000)
 ```
 
-### Arguments 
+### params 
 
-* `destination` : (`Number` or `Element`) Destination of the scroll. 
-* `duration`: (`Number`) Time of the scroll in ms (default is `500`). 
+Name | Type | Description 
+-- | -- | --
+`destination` | `Integer` or `Object` | Destination of the scroll. 
+[`duration`] | `Integer` | Time of the scroll in milliseconds (default is `300`). 
+
+### returns 
+
+`Undefined`
 
 ## MIT License
 

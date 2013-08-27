@@ -1,50 +1,72 @@
-;(function(window, document){
+;(function(win, doc){
   
-  var requestAnimationFrame = (function(){
-    return window.requestAnimationFrame
-        || window.webkitRequestAnimationFrame
-        || window.mozRequestAnimationFrame 
-        || window.oRequestAnimationFrame
-        || window.msRequestAnimationFrame
-        || function(callback){ 
-            window.setTimeout(function(){
-              callback()
-            }, 1000 / 60)
-          }
-  })()
-  , yOffset = "pageYOffset" in window
-  
-  function absoluteOffset(el){
-    var value = el.offsetTop
-    while(el && (el = el.offsetParent)) value += el.offsetTop
-    return value
-  }
-  
-  function scroll(to, duration) {
-    var origin = yOffset ? window.pageYOffset : document.documentElement.scrollTop
-      , start = +new Date()
-      , end = start + (duration || 500)
-      , direction
+  var docEl = doc.documentElement
+    , requestAnimationFrame = 
+      win.requestAnimationFrame || 
+      win.webkitRequestAnimationFrame || 
+      win.mozRequestAnimationFrame || 
+      win.oRequestAnimationFrame || 
+      win.msRequestAnimationFrame || 
+      function(callback){ 
+        setTimeout(function(){
+          callback()
+        }, 1000 / 60)
+      }
+    , _toString = {}.toString
+    , NUMBER_CLASS = "[object Number]"
+
+  /**
+   * AnimationFrame manager
+   *
+   * @private
+   * @param {Function} fn Callback
+   * @param {Integer} duration 
+  */
+  function timer(fn, duration){
+    var start = +new Date()
+      , end = start + duration
+      , current = start 
+      , lastPercent = 0
     
-    if(typeof to == "object" && "nodeName" in to) to = absoluteOffset(to)
-    to = document.height < (to + window.innerHeight) ? document.height - window.innerHeight : to
-      
-    direction = to - origin < 0
-     
-    function handler(){
-      var now = +new Date()
-      if (now <= end) {
-        if(direction) scrollTo(0, origin - (now - start) / (end - start) * origin + to)
-        else scrollTo(0, origin + (now - start) / (end - start) * (to - origin))
-        requestAnimationFrame(handler)
+    requestAnimationFrame(step)
+    function step(){
+      current = +new Date()
+      lastPercent = (current - start) / duration
+      fn(lastPercent = 1 > lastPercent ? lastPercent : 1)
+      if(current > end) {
+        if(lastPercent != 1) {
+          requestAnimationFrame(function(){
+            fn(1)
+          })
+        }
       } else {
-        scrollTo(0, to)
+        requestAnimationFrame(step)
       }
     }
-
-    requestAnimationFrame(handler)
   }
   
-  document.scrollTo = scroll
+  /**
+   * A function that makes the pages scroll smoothly
+   *
+   * @param {Object|Integer} destination Object with `top` and `left` properties or Number (top) 
+   * @param {Integer} duration 
+   * @name document.scrollTo
+   * @example
+   * 
+   * document.scrollTo(400, 1000)
+   * document.scrollTo({top:0, left:1000}, 1000)
+  */
+  function scrollTo(destination, duration){
+    var startTop = win.pageYOffset || docEl.scrollTop || doc.body.scrollTop || 0
+      , startLeft = win.pageXOffset || docEl.scrollLeft || doc.body.scrollLeft || 0
+      , isNumber = _toString.call(destination) == NUMBER_CLASS
+      , destinationTop = isNumber ? destination : (_toString.call(destination.top) == NUMBER_CLASS ? destination.top : startTop)
+      , destinationLeft = isNumber ? startLeft : (_toString.call(destination.left) == NUMBER_CLASS ? destination.left : startLeft)
+    timer(function(i){
+      win.scrollTo(startLeft * (1 - i) + destinationLeft * i, startTop * (1 - i) + destinationTop * i)
+    }, duration == null ? 300 : duration)
+  }
+  
+  document.scrollTo = scrollTo
 
 })(this, this.document)
