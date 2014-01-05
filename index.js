@@ -1,31 +1,37 @@
-;(function(win, doc){
-  
-  var docEl = doc.documentElement
-    , requestAnimationFrame = 
-      win.requestAnimationFrame || 
-      win.webkitRequestAnimationFrame || 
-      win.mozRequestAnimationFrame || 
-      win.oRequestAnimationFrame || 
-      win.msRequestAnimationFrame || 
-      function(callback){ 
+;(function(root, name, output){
+  if(typeof define == "function" && define.amd) return define([], output)
+  if(typeof module == "object" && module.exports) module.exports = output()
+  else root[name] = output()
+})(this, "scroll", function(){
+    
+  var win = window
+    , doc = win.document
+    , docEl = doc.documentElement
+    , requestAnimationFrame =
+      win.requestAnimationFrame ||
+      win.webkitRequestAnimationFrame ||
+      win.mozRequestAnimationFrame ||
+      win.oRequestAnimationFrame ||
+      win.msRequestAnimationFrame ||
+      function(callback){
         setTimeout(function(){
           callback()
         }, 1000 / 60)
       }
     , _toString = {}.toString
     , NUMBER_CLASS = "[object Number]"
-
+  
   /**
    * AnimationFrame manager
    *
    * @private
    * @param {Function} fn Callback
-   * @param {Integer} duration 
+   * @param {Integer} duration
   */
   function timer(fn, duration){
     var start = +new Date()
       , end = start + duration
-      , current = start 
+      , current = start
       , lastPercent = 0
     
     requestAnimationFrame(step)
@@ -48,15 +54,15 @@
   /**
    * A function that makes the pages scroll smoothly
    *
-   * @param {Object|Integer} destination Object with `top` and `left` properties or Number (top) 
-   * @param {Integer} duration 
+   * @param {Object|Integer} destination Object with `top` and `left` properties or Number (top)
+   * @param {Integer} duration
    * @name document.scrollTo
    * @example
-   * 
-   * document.scrollTo(400, 1000)
-   * document.scrollTo({top:0, left:1000}, 1000)
+   *
+   * scroll(400, 1000)
+   * scroll({top:0, left:1000}, 1000)
   */
-  function scrollTo(destination, duration){
+ return function (destination, duration){
     var startTop = win.pageYOffset || docEl.scrollTop || doc.body.scrollTop || 0
       , startLeft = win.pageXOffset || docEl.scrollLeft || doc.body.scrollLeft || 0
       , isNumber = _toString.call(destination) == NUMBER_CLASS
@@ -66,7 +72,5 @@
       win.scrollTo(startLeft * (1 - i) + destinationLeft * i, startTop * (1 - i) + destinationTop * i)
     }, duration == null ? 300 : duration)
   }
-  
-  document.scrollTo = scrollTo
 
-})(this, this.document)
+})
