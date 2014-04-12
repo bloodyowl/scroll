@@ -2,7 +2,7 @@
 
 [![browser support](https://ci.testling.com/bloodyowl/scroll.png)](https://ci.testling.com/bloodyowl/scroll)
 
-Scroll is a tiny JavaScript utility that enables smooth scrolling. 
+Scroll is a tiny JavaScript utility that enables smooth scrolling.
 
 ## Install
 
@@ -14,10 +14,6 @@ $ npm install bloody-scroll
 
 ```
 var scroll = require("bloody-scroll")
-// or
-define(["scroll"], function(scroll){})
-// 
-window.scroll
 ```
 
 ## API
@@ -29,10 +25,10 @@ scroll({left:1000}, 1000)
 scroll({top:400}, 1000)
 ```
 
-### params 
+### params
 
-* `destination` : `Integer` or `Object`, Destination of the scroll. 
-* [`duration`] : `Integer`, Time of the scroll in milliseconds (default is `300`). 
+* `destination` : `Integer` or `Object`, Destination of the scroll.
+* [`duration`] : `Integer`, Time of the scroll in milliseconds (default is `300`).
 
 ## MIT License
 
