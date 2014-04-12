@@ -1,12 +1,13 @@
 {
   "name": "bloody-scroll",
   "author": "bloodyowl",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "scripts": {
-    "test": "tape test/*.js"
+    "test": "testling"
   },
   "devDependencies": {
-    "tape": "~2.3.2"
+    "tape": "^2.3.2",
+    "testling": "^1.6.1"
   },
   "testling": {
     "files": "test/*.js",
@@ -47,7 +48,7 @@
     "test": "test"
   },
   "dependencies": {
-    "tape": "~2.3.2"
+    "bloody-animationframe": "0.0.1"
   },
   "repository": {
     "type": "git",
