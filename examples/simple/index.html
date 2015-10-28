@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scroll Simple Example</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      .Container {
+        height: 5000px;
+        width: 5000px;
+        background-size: contain;
+        background: repeating-linear-gradient(
+          45deg,
+          rgba(0, 0, 0, 0.2),
+          rgba(0, 0, 0, 0.2) 10px,
+          rgba(0, 0, 0, 0.3) 10px,
+          rgba(0, 0, 0, 0.3) 20px
+        ), linear-gradient(to bottom right,
+          rgba(255, 0, 0, 1) 0%,
+          rgba(255, 255, 0, 1) 15%,
+          rgba(0, 255, 0, 1) 30%,
+          rgba(0, 255, 255, 1) 50%,
+          rgba(0, 0, 255, 1) 65%,
+          rgba(255, 0, 255, 1) 80%,
+          rgba(255, 0, 0, 1) 100%);
+      }
+      .Controls {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        height: 100px;
+        width: 300px;
+        margin-left: -150px;
+        margin-top: -50px;
+        background: #fff;
+        box-shadow: 0 .1rem .125rem rgba(0,0,0,.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="Container">
+    <div class="Controls">
+        <button id="To1000">
+          y: 1000px
+        </button>
+        <button id="To20002000">
+          x: 2000px, y: 2000px
+        </button>
+        <button id="To50000">
+          x: 0, y: 5000px
+        </button>
+        <button id="To50005000">
+          x: 5000px, y: 5000px
+        </button>
+        <button id="To05000">
+          x: 0px, y: 5000px (2000ms duration)
+        </button>
+        <button id="To30004000">
+          x: 3000px, y: 4000px (2000ms duration)
+        </button>
+      </div>
+    </div>
+    <script src="/examples/simple/index.js"></script>
+  </body>
+</html>

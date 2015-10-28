@@ -1,62 +1,39 @@
 {
-  "name": "bloody-scroll",
-  "author": "bloodyowl",
-  "version": "0.2.1",
-  "scripts": {
-    "test": "testling"
-  },
-  "devDependencies": {
-    "tape": "^2.3.2",
-    "testling": "^1.6.1"
-  },
-  "testling": {
-    "files": "test/*.js",
-    "browsers": {
-      "ie": [
-        6,
-        7,
-        8,
-        9
-      ],
-      "firefox": [
-        22,
-        23,
-        24,
-        25
-      ],
-      "chrome": [
-        28,
-        29,
-        30,
-        31
-      ],
-      "safari": [
-        4,
-        5.1,
-        6
-      ],
-      "opera": [
-        10,
-        11,
-        12
-      ]
-    }
-  },
-  "description": "[![browser support](https://ci.testling.com/bloodyowl/scroll.png)](https://ci.testling.com/bloodyowl/scroll)",
+  "name": "scroll",
+  "version": "1.0.0",
+  "description": "Smooth scrolling to given coordinates for the browser",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
-  "dependencies": {
-    "bloody-animationframe": "0.0.1"
+  "scripts": {
+    "start": "babel --stage 0 src --out-dir lib --ignore '__tests__'",
+    "examples": "babel-node --stage 0 scripts/webpack/examples",
+    "test": "babel-node --stage 0 scripts/webpack/test"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bloodyowl/scroll"
+    "url": "git@github.com:bloodyowl/Scroll"
   },
+  "keywords": [
+    "scroll",
+    "smooth-scroll"
+  ],
+  "author": "bloodyowl",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bloodyowl/scroll/issues"
+    "url": "https://github.com/bloodyowl/Scroll/issues"
   },
-  "homepage": "https://github.com/bloodyowl/scroll"
+  "homepage": "https://github.com/bloodyowl/Scroll",
+  "devDependencies": {
+    "babel": "^5.8.29",
+    "babel-core": "^5.8.30",
+    "babel-loader": "^5.3.2",
+    "file-loader": "^0.8.4",
+    "tape": "^4.2.2",
+    "tape-catch": "^1.0.4",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1",
+    "webpack-jsdom-tape-plugin": "^1.2.0"
+  },
+  "dependencies": {
+    "raf": "^3.1.0"
+  }
 }
