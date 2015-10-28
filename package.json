@@ -1,8 +1,13 @@
 {
   "name": "bloody-scroll",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Smooth scrolling to given coordinates for the browser",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib/index.js",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "start": "babel --stage 0 src --out-dir lib --ignore '__tests__'",
     "examples": "babel-node --stage 0 scripts/webpack/examples",
