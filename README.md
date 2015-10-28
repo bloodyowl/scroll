@@ -2,6 +2,8 @@
 
 > Smooth scrolling to given coordinates for the browser
 
+[![Build Status](https://travis-ci.org/bloodyowl/scroll.svg)](https://travis-ci.org/bloodyowl/scroll)
+
 ## Install
 
 ```
