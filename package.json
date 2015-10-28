@@ -1,5 +1,5 @@
 {
-  "name": "scroll",
+  "name": "bloody-scroll",
   "version": "1.0.0",
   "description": "Smooth scrolling to given coordinates for the browser",
   "main": "index.js",
