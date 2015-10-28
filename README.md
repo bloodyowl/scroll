@@ -18,13 +18,17 @@ import scroll from "bloody-scroll"
 
 ## API
 
-### scroll({ x: number, y: number}, duration = 300)
+### promise scroll({ x: number, y: number}, duration = 300)
 
-### arguments
+#### Arguments
 
-* `coords.x` : (*Number*) Horizontal target for scroll.
-* `coords.y` : (*Number*) Vertical target for scroll.
-* `duration` : (*Number*) Transition duration.
+- `coords.x` : (*Number*) Horizontal target for scroll.
+- `coords.y` : (*Number*) Vertical target for scroll.
+- `duration` : (*Number*) Transition duration.
+
+#### Returns
+
+- `promise` : (*Promise*) A promise that is fulfilled once the transition is done.
 
 ### Example
 
